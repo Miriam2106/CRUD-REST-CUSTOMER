@@ -32,6 +32,11 @@ const insertCustomer = () => {
             Swal.fire({
                 icon: 'success',
                 title: 'The customer has been registered'
+                confirmButtonText: 'Ok'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = "http://localhost:8084/client_java_war_exploded/index.jsp"
+                }
             })
         }
     });
@@ -113,7 +118,7 @@ const deleteCustomer=(customerNumber)=>{
         },
         url: `http://localhost:8080/java_rest_crud_costumer_war_exploded/customer/delete/${customerNumber}`
     }).done(function(res){
-        if(res==null){
+        if(res==false){
             Swal.fire({
                 icon: 'error',
                 title: 'The client could not be removed',
